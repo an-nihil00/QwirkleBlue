@@ -38,6 +38,8 @@ public class Tile {
 			ThePattern="Blank";
 		}
 	}
+	
+
 	public int getColour(){
 		return Col;
 	}

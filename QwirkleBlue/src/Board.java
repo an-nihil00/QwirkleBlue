@@ -29,7 +29,6 @@ public class Board {
 		board.put(new int[] {x,y}, tile);
 	}
 	
-	//TODO ask emmy and/or brian for help
 	public int hashFunction(int x, int y) {
 		int radius= Math.max(Math.abs(x), Math.abs(y));
 		ArrayList<Integer> range = new ArrayList<Integer>();
