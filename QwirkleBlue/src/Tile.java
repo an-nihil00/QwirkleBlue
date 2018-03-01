@@ -38,6 +38,10 @@ public class Tile {
 			ThePattern="Blank";
 		}
 	}
+	
+	public String toString() {
+		return TheColor+" "+ThePattern;
+	}
 	public int getColour(){
 		return Col;
 	}
