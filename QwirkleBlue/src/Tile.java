@@ -44,5 +44,17 @@ public class Tile {
 	public int getPattern(){
 		return Pat;
 	}
+	public String getColourString(){
+		return TheColor;
+	}
+	public String getPatternString(){
+		return ThePattern;
+	}
+	
+	public String toString(){
+		return TheColor +" "+ThePattern;
+	}
 	
 }
+
+
