@@ -1,7 +1,7 @@
 import java.util.HashMap;
 public class Board {
 	
-	//uses a 2d integer array{x,y} as keys that maps to a resulting tile
+	//uses a 2 element integer array{x,y} as keys that maps to a resulting tile
 	HashMap<int[], Tile> board;
 	Board(){
 		board = new HashMap<int[], Tile>();
