@@ -5,7 +5,7 @@ import java.util.TreeMap;
 @SuppressWarnings("unused")
 public class Board {
 	
-	//uses a 2d integer array{x,y} as keys that maps to a resulting tile
+	//uses a 2 element integer array{x,y} as keys that maps to a resulting tile
 	HashMap<int[], Tile> board;
 	int[] coordinate = new int[2];
 	Board(){
@@ -36,7 +36,7 @@ public class Board {
 			range.add(i);
 		}
 		
-		int sideLength = 2*radius -1;
+		int sideLength = (2*radius -1);
 		
 		return 0;
 	}
