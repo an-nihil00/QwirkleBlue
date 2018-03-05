@@ -8,8 +8,10 @@ public class Board {
 	
 	//uses a 2 element integer array{x,y} as keys that maps to a resulting tile
 	HashMap<Key, Tile> board;
+	static Key coord;
 	int[] coordinate = new int[2];
 	Board(){
+		coord = new Key(0,1);
 		board = new HashMap<Key, Tile>();
 	}
 	 
@@ -30,21 +32,73 @@ public class Board {
 	
 	//TODO finish the keyFunction, getRow and getCol
 	class Key{
-		int key = 0;
-		
+		int x,  y;		
 		Key(int x, int y){
-			this.key = keyFunction(x,y);
+			this.x = x;
+			this.y = y;
+		}
+		int interior( Key p ){
+		   int a = Math.max( Math.abs( p.x ), Math.abs( p.y ));
+		   return ( 2*a - 1 )*( 2*a - 1 );
 		}
 		
-		public int keyFunction(int x, int y){
-			int radius= Math.max(Math.abs(x), Math.abs(y));
-			ArrayList<Integer> range = new ArrayList<Integer>();
-			for(int i = (int)(Math.pow((2*(radius-1)+1),2)-1); i < Math.pow((2*radius+1),2); i++) {
-				range.add(i);
-			}
-			
-			int sideLength = (2*radius -1);
-			return 0;
+	    Key startKey( Key p ){
+	        int a = Math.max( Math.abs( p.x ), Math.abs( p.y ));
+	        return new Key( a, -( a-1 ));
+	    }
+	    
+	    int offSetRow1( Key pStart, Key p ){
+	        return ( p.y - pStart.y ) + 1;
+	    }
+		
+
+		public int keyFunction(Key curr){
+	        int a = Math.max( Math.abs( curr.x ), Math.abs( curr.y ));
+	        int off=0;
+	        int interiorCnt = interior( curr );
+	        Key start = startKey( curr );
+
+	        if( ( curr.x == a ) && ( curr.y >= start.y ) ){
+	            off = offSetRow1( start, curr );
+	            return off+interiorCnt;
+	        }
+
+	         if( curr.y == a ){
+	            Key start2 = new Key( a, a );
+	            int off1 = offSetRow1( start, start2 );
+
+	            int off2 = start2.x - curr.x;
+	            off = off1 + off2;
+	            return off+interiorCnt;
+
+	        }
+
+	        if( curr.x == -a ){
+	            Key start2 = new Key( a, a );
+	            int off1 = offSetRow1( start, start2 );
+
+	            Key start3 = new Key( -a, a );
+	            int off2 = start2.x - start3.x;
+	            int off3 = start3.y - curr.y;
+
+	            off = off1 + off2 + off3;
+	            return off+interiorCnt;
+
+	        }
+
+	        else{
+	            Key start2 = new Key( a, a );
+	            int off1 = offSetRow1( start, start2 );
+
+	            Key start3 = new Key( -a, a );
+	            int off2 = start2.x - start3.x;
+	            int off3 = start3.y - curr.y;
+
+	            Key start4 = new Key( -a, -a );
+	            int off4 = curr.x - start4.x;
+	            off = off1 + off2 + off3 + off4;
+	            return interiorCnt + off;
+	        }
 		}
 		public int getRow(int key){
 			return 0;
@@ -56,8 +110,11 @@ public class Board {
 	}
 	
 	public static void main(String[] args) {
+		
+		
 		Board bo = new Board();
 		//bo.setTile(2, 3, new Tile(3,2));
+		System.out.println("Coordinate "+bo.coord.keyFunction(coord));
 		System.out.println(bo.board.keySet());
 		System.out.println(bo.getTile(0, 0));
 		System.out.println(bo);
