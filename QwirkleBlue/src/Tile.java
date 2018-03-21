@@ -1,62 +1,38 @@
-public class Tile {
-	private String TheColor;
-	private String ThePattern;
-	private int Col;
-	private int Pat;	
-	Tile(int Colour, int Pattern){
-		//Tile made via numbers 0-5 for color and shape respectively
-		Col=Colour;
-		Pat=Pattern;
-		if(Colour==0){
-			TheColor="Orange";
-		}else if(Colour==1){
-			TheColor="Green";
-		}else if(Colour==2){
-			TheColor="Yellow";
-		}else if(Colour==3){
-			TheColor="Red";
-		}else if(Colour==4){
-			TheColor="Blue";
-		}else if(Colour==5){
-			TheColor="Purple";
-		}else{
-			TheColor="Blank";
-		}
-		if(Pattern==0){
-			ThePattern="Cross";
-		}else if(Pattern==1){
-			ThePattern="Clover";
-		}else if(Pattern==2){
-			ThePattern="Star";
-		}else if(Pattern==3){
-			ThePattern="Diamond";
-		}else if(Pattern==4){
-			ThePattern="Square";
-		}else if(Pattern==5){
-			ThePattern="Circle";
-		}else{
-			ThePattern="Blank";
-		}
-	}
-	
+import java.util.Arrays;
 
+public class Tile {
+	private int col;
+	private int pat;
+	final String[] colours  = {"Red","Orange","Yellow","Green","Blue","Purple"};
+	final String[] patterns = {"Circle","Square","Clover","Diamond","Cross","Star"};
+	Tile(int colour, int pattern){
+		//Tile made via numbers 0-5 for color and shape respectively
+		col=colour;
+		pat=pattern;
+	}
 	public int getColour(){
-		return Col;
+		return col;
 	}
 	public int getPattern(){
-		return Pat;
+		return pat;
 	}
 	public String getColourString(){
-		return TheColor;
+		return colours[col];
 	}
 	public String getPatternString(){
-		return ThePattern;
+		return patterns[pat];
 	}
 	
 	public String toString(){
-		return TheColor +" "+ThePattern;
+		return getColourString() +" "+getPatternString();
+	}
+	
+	public boolean equals(Tile in){
+		return(in.getColour() == getColour() && in.getPattern() == getPattern());
 	}
 	
 }
+
+
 
 

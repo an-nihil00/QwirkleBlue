@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public abstract class Player {
 	private String name;
 	private int score;
-	private int[][] hand;
+	private Tile[] hand;
 	Player(String name){
 		this.name=name;
 		score=0;
-		hand = new int[2][6];
+		hand = new Tile[6];
 	}
-	public void updateHand(int[][] hand){
+	public void updateHand(Tile[] hand){
 		this.hand=hand;
 	}
 	//Allows other classes to change the hand based on new draws
@@ -17,7 +17,7 @@ public abstract class Player {
 		score+=move;
 	}
 	//Points from the last move are added to the player’s score
-	public int[][] getHand(){
+	public Tile[] getHand(){
 		return hand;
 	}
 	//Will return an array tiles in the player’s hand
@@ -29,6 +29,8 @@ public abstract class Player {
 		return name;
 	}
 	//Returns the name the human entered at the beginning of the game
-	public abstract int[][] getMove(ArrayList<int []> boardState);
+	public abstract Move getMove(Board board);
 	//Gets placement of the next move
 }
+
+
